@@ -74,6 +74,9 @@ def main(input_article_parquet, input_sentence_parquet, model_gguf, output_prefi
     test = prefilter_subset.sample(fraction=split_fractions[1], with_replacement=False)
     val = prefilter_subset.sample(fraction=split_fractions[2], with_replacement=False)
     
+    train.write_parquet(f"{output_prefix}_train.parquet")
+    test.write_parquet(f"{output_prefix}_test.parquet")
+    val.write_parquet(f"{output_prefix}_val.parquet")
 
 
     print(train, test, val)
