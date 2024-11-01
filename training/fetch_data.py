@@ -23,5 +23,5 @@ group by lsr.pmcid"""
 df = pl.read_database_uri(query, connstr)
 df.write_parquet("litscan_all_hit_articles.parquet")
 
-# sentences = pl.read_database_uri(sentence_query, connstr)
-# sentences.write_parquet("litscan_all_hit_sentences.parquet")
+sentences = pl.read_database_uri(sentence_query, connstr)
+sentences.write_parquet("litscan_all_hit_sentences.parquet")
