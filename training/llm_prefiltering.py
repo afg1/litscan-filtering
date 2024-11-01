@@ -54,7 +54,7 @@ def main(input_article_parquet, input_sentence_parquet, model_gguf, output_prefi
     sentence_data =pl.scan_parquet(input_sentence_parquet)
 
     prefilter_subset = article_data.join(sentence_data, on="pmcid").collect(streaming=True).sample(total_subset)
-    prefilter_subset = prefilter_subset.with_columns(pl.col("sentence").list.head(20))
+    prefilter_subset = prefilter_subset.with_columns(pl.col("sentence").list.head(10))
 
     print(prefilter_subset)
 
