@@ -24,13 +24,13 @@ evaluation_prompt = ("Read the following title and abstract: \n"
 def evaluate_paper(lm, title, abstract, hits):
     formatted_prompt = evaluation_prompt.format(title=title, abstract=abstract, hits="\n".join(hits))
     with user():
+        lm += system_prompt
         lm += formatted_prompt
     
     with assistant():
         lm += ("I believe the paper is likely to be "
                + select(name="judgement", options=["relevant", "irrelevant"])
             )
-    print(lm)    
 
     return lm
 
@@ -54,6 +54,7 @@ def main(input_article_parquet, input_sentence_parquet, model_gguf, output_prefi
     sentence_data =pl.scan_parquet(input_sentence_parquet)
 
     prefilter_subset = article_data.join(sentence_data, on="pmcid").collect(streaming=True).sample(total_subset)
+    prefilter_subset = prefilter_subset.with_columns(pl.col("sentence").list.head(20))
 
     print(prefilter_subset)
 
