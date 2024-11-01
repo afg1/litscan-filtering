@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "litscan-filtering"
+version = "0.1.0"
+description = ""
+authors = ["Andrew Green <agreen@ebi.ac.uk>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+guidance = "^0.1.16"
+llama-cpp-python = "^0.3.0"
+polars = "^1.8.2"
+connectorx = "^0.3.3"
+pyarrow = "^17.0.0"
+scikit-learn = "^1.5.2"
+transformers = "^4.45.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
