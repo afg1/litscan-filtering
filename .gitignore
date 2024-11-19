@@ -1,5 +1,2 @@
 /.DS_Store
-/litscan_all_hit_articles.parquet
-/litscan_all_hit_sentences.parquet
-/llm_judged_all.parquet
-/training
+*.parquet
